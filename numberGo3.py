@@ -1,6 +1,11 @@
+# coding: utf-8
 import os
 import random
 import getpass
+
+limit = 10
+minimum = 1
+maximum = 100
 
 def checker(ZahlStr):
 	Zahl = 0
@@ -9,9 +14,9 @@ def checker(ZahlStr):
 	else:
 		return False
 
-	if Zahl < 1:
+	if Zahl < minimum:
 		return False
-	elif Zahl > 10:
+	elif Zahl > maximum:
 		return False
 	else:
 		return True
@@ -20,7 +25,7 @@ def human1Input():
 	secretInteger = 5
 	while True:
 
-		secretString = getpass.getpass('Bitte geben sie die geheime Zahl ein: \n')
+		secretString = getpass.getpass('Bitte geben sie die geheime Zahl ein: ')
 
 		if checker(secretString) == False:
 			print "Your input wasn't valid"
@@ -30,12 +35,12 @@ def human1Input():
 			return secretInteger
 
 def human1Random():
-	randomInteger = random.randint(1,10)
+	randomInteger = random.randint(minimum,maximum)
 	return randomInteger
 
 def human2Input():
 	while True:
-		secretString = raw_input('Bitte versuchen sie die geheime Zahl zu raten: \n')
+		secretString = raw_input('Bitte versuchen sie die geheime Zahl zu raten: ')
 
 		if checker(secretString) == False:
 			print "Your input wasn't valid"
@@ -47,20 +52,14 @@ def human2Input():
 def compare(human1Integer,human2Integer):
 	if human1Integer < human2Integer:
 		print 'Your answer was too big'
-		print 50 * '-'
-		print ''
 		return False
 
 	elif human1Integer > human2Integer:
 		print 'Your answer was too low'
-		print 50 * '-'
-		print ''
 		return False
 
 	elif human1Integer == human2Integer:
 		print 'Your answer was correct'
-		print 50 * '-'
-		print ''
 		return True
 
 def loadHighScore():
@@ -121,7 +120,7 @@ def printHighScore(highScore):
 		entry = highScore[user]
 		print user.ljust(15) + ' | ' + entry[0].ljust(5) + ' | ' + entry[1].ljust(6) + ' | ' + entry[2].ljust(12) + ' | ' + entry[3].ljust(5) + '|'
 
-limit = 3
+
 scoreh1 = 0
 scoreh2 = 0
 running = True
@@ -130,7 +129,7 @@ human1Func = human1Random
 
 print '1: 1 Player'
 print '2: 2 Player'
-choice = raw_input('Entscheide, wie die Zahlen erstellt werden sollen: ')
+choice = raw_input('Mit wie vieler Spielern möchtest du spielen: ')
 if choice == '1':
 	human1Func = human1Random
 elif choice == '2':
@@ -146,6 +145,10 @@ while running == True:
 		print 'Human 1 Score: '.ljust(20) + str(scoreh1)
 
 	print 'Human 2 Score: '.ljust(20) + str(scoreh2)
+	print 'Limit:'.ljust(20) + str(limit)
+	print 'Minimum:'.ljust(20) + str(minimum)
+	print 'Maximum:'.ljust(20) + str(maximum)
+	print 50*'-'
 	print ''
 
 	h1Input = human1Func()
@@ -162,7 +165,10 @@ while running == True:
 
 		else:
 			tryCounter += 1
+			print 'You now have ' + str(limit-tryCounter) + ' tries'
 
+		print 50 * '-'
+		print ''
 
 	if result == True:
 		scoreh2 += 1

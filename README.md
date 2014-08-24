@@ -11,7 +11,7 @@ programm sagt bei fehler, ob die geratene zahl über oder unter dem zielergebnis
 #### 2.)
 wie 1. nur das spieler 1 der Computer ist und eine zahl vorgibt <br>
 ##### 2.2)
-Auswählbar machen ob z5 <br>
+Auswählbar machen ob ein oder zwei Spieler <br>
 #### 3.)
 punktestand nach jeder runde anzeigen <br>
 #### 4.)

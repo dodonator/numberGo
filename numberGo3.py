@@ -2,10 +2,18 @@
 import os
 import random
 import getpass
+import sys
 
-limit = 10
-minimum = 1
-maximum = 100
+print ''
+print 100*'-'
+print 'Bitte geben sie den Intervall ein in dem die Zahlen liegen sollen.'
+print 'Wichtig: Der Intervall ist inklusive der eingegebenen Zahlen.'
+print 100*'-'
+minimum = int(raw_input('Bitte geben sie die kleinste Zahl ein: '))
+maximum = int(raw_input('Bitte geben sie die größte Zahl ein: '))
+limit = (minimum + maximum + 1) / 3 + 1
+
+print 100*'-'
 
 def checker(ZahlStr):
 	Zahl = 0
@@ -134,6 +142,9 @@ if choice == '1':
 	human1Func = human1Random
 elif choice == '2':
 	human1Func = human1Input
+else:
+	print 'Your answer was not correct!'
+	sys.exit()
 
 os.system('clear')
 
@@ -148,7 +159,7 @@ while running == True:
 	print 'Limit:'.ljust(20) + str(limit)
 	print 'Minimum:'.ljust(20) + str(minimum)
 	print 'Maximum:'.ljust(20) + str(maximum)
-	print 50*'-'
+	print 100*'-'
 	print ''
 
 	h1Input = human1Func()
@@ -167,7 +178,7 @@ while running == True:
 			tryCounter += 1
 			print 'You now have ' + str(limit-tryCounter) + ' tries'
 
-		print 50 * '-'
+		print 100 * '-'
 		print ''
 
 	if result == True:
@@ -176,7 +187,7 @@ while running == True:
 	elif result == False:
 		scoreh1 += 1
 		print 'The right answer would be: ' + str(h1Input)
-		print 50*'-'
+		print 100*'-'
 
 	print ''
 	continueInput = raw_input('Press Enter to continue or q to exit: ')
@@ -188,7 +199,7 @@ while running == True:
 highScore = loadHighScore()
 
 username = raw_input('Bitte geben sie ihren Namen ein: ')
-print 50*'-'
+print 100*'-'
 wins = str(scoreh2)
 games = str(scoreh1 + scoreh2)
 rank = random.randint(0,100)

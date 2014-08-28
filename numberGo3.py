@@ -129,7 +129,7 @@ human1Func = human1Random
 
 print '1: 1 Player'
 print '2: 2 Player'
-choice = raw_input('Mit wie vieler Spielern möchtest du spielen: ')
+choice = raw_input('Mit wie vielen Spielern möchtest du spielen: ')
 if choice == '1':
 	human1Func = human1Random
 elif choice == '2':

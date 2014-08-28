@@ -4,16 +4,20 @@ import random
 import getpass
 import sys
 
+width = 80
+
+
 print ''
-print 80*'-'
+print width*'-'
 print 'Bitte geben sie den Intervall ein in dem die Zahlen liegen sollen.'
 print 'Wichtig: Der Intervall ist inklusive der eingegebenen Zahlen.'
-print 80*'-'
+print width*'-'
 minimum = int(raw_input('Bitte geben sie die kleinste Zahl ein: '))
 maximum = int(raw_input('Bitte geben sie die größte Zahl ein: '))
-limit = (maximum - minimum + 1) / 3 + 1
-
-print 80*'-'
+limit = round((float(maximum) - float(minimum)) / 3.0)
+print width*'-'
+print 'You have ' + str(limit) + ' tries.'
+print width*'-'
 
 def checker(ZahlStr):
 	Zahl = 0
@@ -106,7 +110,7 @@ def editHighScore(highScore,name,wins,games,rank):
 	newEntry = [0,0,0,0]
 	newEntry[0] = str(int(tmpEntry[0]) + int(wins))
 	newEntry[1] = str(int(tmpEntry[1]) + int(games))
-	tmpPercentage = int(float(newEntry[0])/float(newEntry[1]) * 80)
+	tmpPercentage = int(float(newEntry[0])/float(newEntry[1]) * width)
 	newEntry[2] = str(tmpPercentage)
 	newEntry[3] = str(rank)
 	highScore[name] = newEntry
@@ -116,7 +120,7 @@ def createNewUser(highScore,name,wins,games,rank):
 	tmpEntry = [0,0,0,0]
 	tmpEntry[0] = str(wins)
 	tmpEntry[1] = str(games)
-	tmpPercentage = int(float(tmpEntry[0])/float(tmpEntry[1]) * 80)
+	tmpPercentage = int(float(tmpEntry[0])/float(tmpEntry[1]) * width)
 	tmpEntry[2] = str(tmpPercentage)
 	tmpEntry[3] = str(rank)
 	highScore[name] = tmpEntry
@@ -159,7 +163,7 @@ while running == True:
 	print 'Limit:'.ljust(20) + str(limit)
 	print 'Minimum:'.ljust(20) + str(minimum)
 	print 'Maximum:'.ljust(20) + str(maximum)
-	print 80*'-'
+	print width*'-'
 	print ''
 
 	h1Input = human1Func()
@@ -178,7 +182,7 @@ while running == True:
 			tryCounter += 1
 			print 'You now have ' + str(limit-tryCounter) + ' tries'
 
-		print 80 * '-'
+		print width * '-'
 		print ''
 
 	if result == True:
@@ -187,7 +191,7 @@ while running == True:
 	elif result == False:
 		scoreh1 += 1
 		print 'The right answer would be: ' + str(h1Input)
-		print 80*'-'
+		print width*'-'
 
 	print ''
 	continueInput = raw_input('Press Enter to continue or q to exit: ')
@@ -199,10 +203,10 @@ while running == True:
 highScore = loadHighScore()
 
 username = raw_input('Bitte geben sie ihren Namen ein: ')
-print 80*'-'
+print width*'-'
 wins = str(scoreh2)
 games = str(scoreh1 + scoreh2)
-rank = random.randint(0,80)
+rank = random.randint(0,width)
 
 if username in highScore:
 	highScore = editHighScore(highScore,username,wins,games,rank)
